@@ -1,0 +1,89 @@
+{% extends "Category/base.html" %} {% block catebody %}
+
+
+
+
+
+<section id="content" class="two-column with-right-sidebar">
+	{% for article in object %}
+		<fieldset>
+			<legend>{{ article.publication_date }} {{ article.category.category }}</legend>
+
+
+			<code>{{ article.title }} </code>
+
+			<blockquote>
+				<h5 style="color: #000000">{{ article.content }}</h5>
+				<h5>작성자 {{ article.authors }} {{ article.IP_addr }}</h5>
+				<a class="button" href="#" style="position: relative; left: 500px">
+					좋아요 {{ article.like }}</a> 
+
+				<div id="disqus_thread"></div>
+				<script>
+					/**
+					 * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+					 * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+					 */
+
+					var disqus_config = function() {
+						// Replace PAGE_URL with your page's canonical URL variable
+						this.page.identifier = {{ article.id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					};
+					(function() { // DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+
+						s.src = '//uswfreemedia.disqus.com/embed.js';
+
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+
+
+
+
+			</blockquote>
+
+
+		</fieldset>
+
+		{% endfor %}
+</section>
+
+<aside class="sidebar big-sidebar right-sidebar">
+
+
+	<ul>
+		<li class="color-bg">
+			<h3 style="color: #000000">최근 게시물</h3>
+
+			<ul class="newslist">
+				<li>
+				{% for article in new_list %}
+					<fieldset>
+						<legend>{{article.publication_date}}{{article.category.category}}</legend>
+
+
+						<code>{{article.title}}</code>
+
+						<blockquote>
+							<h5 style="color: #000000">{{article.content}}</h5>
+							<h5 style="color: #000000">작성자 {{ article.authors }} 
+							{{ article.IP_addr }}</h5>
+							<a class="button" href="#" style="position: relative; left: 0px">
+								좋아요 {{ article.like }}</a> <a class="button" href="http://127.0.0.1:8000/{{article.id}}"
+								style="position: relative; left: 70px">자세히</a>
+
+						</blockquote>
+
+					</fieldset> 
+				{% endfor %}
+				</li>
+
+			</ul>
+	</ul>
+
+</aside>
+
+
+{% endblock %}
