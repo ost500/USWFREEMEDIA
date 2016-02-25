@@ -19,5 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^forum/', include('Forum.urls', namespace="forum"))
+    url(r'^', include('Forum.urls', namespace="forum")),
+
+    
 ]
